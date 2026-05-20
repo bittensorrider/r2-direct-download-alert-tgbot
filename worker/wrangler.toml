@@ -1,0 +1,31 @@
+name = "r2-download-alerts"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+# Run: python3 scripts/generate_worker_config.py  (after setting R2_BUCKETS in .env)
+
+# --- AUTO-GENERATED BUCKETS (scripts/generate_worker_config.py) ---
+[[r2_buckets]]
+binding = "BUCKET_B_5HBUVQXSRVABPFXQH6PA91RI14AVRNHJQNLWGUWIPCWVGH1K"
+bucket_name = "5hbuvqxsrvabpfxqh6pa91ri14avrnhjqnlwguwipcwvgh1k"
+
+[[r2_buckets]]
+binding = "BUCKET_B_5GQAHVSTFWKWH4QRWONRVYPY2PHMRF6TBIAPTRXHPXKNHJVH"
+bucket_name = "5gqahvstfwkwh4qrwonrvypy2phmrf6tbiaptrxhpxknhjvh"
+
+[[r2_buckets]]
+binding = "BUCKET_B_5CHMCTAU8TQDDGZH8TCMALGNM6EGNW392CMWKAXIJCAWKKTV"
+bucket_name = "5chmctau8tqddgzh8tcmalgnm6egnw392cmwkaxijcawkktv"
+# --- END AUTO-GENERATED BUCKETS ---
+
+[vars]
+WEBHOOK_URL = "https://inf-patio-barbie-briefs.trycloudflare.com/webhook/event"
+DEDUPE_TTL_SECONDS = "600"
+BUCKET_ROUTES = '{"5hbuvqxsrvabpfxqh6pa91ri14avrnhjqnlwguwipcwvgh1k":"BUCKET_B_5HBUVQXSRVABPFXQH6PA91RI14AVRNHJQNLWGUWIPCWVGH1K","5gqahvstfwkwh4qrwonrvypy2phmrf6tbiaptrxhpxknhjvh":"BUCKET_B_5GQAHVSTFWKWH4QRWONRVYPY2PHMRF6TBIAPTRXHPXKNHJVH","5chmctau8tqddgzh8tcmalgnm6egnw392cmwkaxijcawkktv":"BUCKET_B_5CHMCTAU8TQDDGZH8TCMALGNM6EGNW392CMWKAXIJCAWKKTV"}'
+
+[[queues.consumers]]
+queue = "r2-object-events"
+max_batch_size = 10
+max_batch_timeout = 5
+
+# cd worker && npx wrangler secret put WEBHOOK_SECRET
